@@ -1,0 +1,74 @@
+[
+{
+  "model": "feed.postmodel",
+  "pk": 1,
+  "fields": {
+    "image": "post_images/r34r34rrtt444_1_kTyEIJf.png",
+    "user": [
+      "root"
+    ],
+    "text": "fgfdsgsdgsdf",
+    "date_add": "2024-01-16",
+    "likes": []
+  }
+},
+{
+  "model": "feed.postmodel",
+  "pk": 2,
+  "fields": {
+    "image": "post_images/poco.png",
+    "user": [
+      "root"
+    ],
+    "text": "dsdsadsda",
+    "date_add": "2024-01-16",
+    "likes": []
+  }
+},
+{
+  "model": "feed.postmodel",
+  "pk": 3,
+  "fields": {
+    "image": "post_images/rtx4060.jpg",
+    "user": [
+      "dwadawdw"
+    ],
+    "text": "Мечта",
+    "date_add": "2024-01-16",
+    "likes": [
+      [
+        "root"
+      ],
+      [
+        "vakama"
+      ]
+    ]
+  }
+},
+{
+  "model": "feed.commentmodel",
+  "pk": 1,
+  "fields": {
+    "author": [
+      "root"
+    ],
+    "post_model": 3,
+    "text": "fsdafsafsdfsdgas",
+    "date_add": "2024-01-16",
+    "date_edit": "2024-01-16"
+  }
+},
+{
+  "model": "feed.commentmodel",
+  "pk": 2,
+  "fields": {
+    "author": [
+      "vakama"
+    ],
+    "post_model": 3,
+    "text": "Тоже такую хочу",
+    "date_add": "2024-01-16",
+    "date_edit": "2024-01-16"
+  }
+}
+]

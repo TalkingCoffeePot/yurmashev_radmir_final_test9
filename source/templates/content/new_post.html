@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}{% static 'css/style.css' %}{% endblock %}
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}    
+        <div class="card card_form mt-5">
+            <div class="card-body">
+                {{form.image}}
+            </div>
+            <div class="card-body">
+                <div class="form-control mb-3 mt-3">{{form.text}}</div>
+                <button type="submit" class="btn btn-primary">Опубликовать</button>
+            </div>
+          </div>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}{% static 'css/style.css' %}{% endblock %}
+{% block title %}Main Page{% endblock %}
+{% block content %}
+        <div class="container mt-5">
+            <div class="usr_info d-flex flex-row justify-content-around" style="width: 50%;">
+                <div class="usr_avatar" style="width: 20%;">
+                    <img class="user_avatar" src="{{profile_obj.avatar.url}}" style="width: 100%;" alt="">
+                </div>
+                <div class="text_info">
+                    <div class="usr_name">
+                        <div class="d-flex flex-row">
+                            <h3>{{profile_obj.username}}</h3>
+                            <a href="{% url 'accounts:edit_profile' profile_obj.pk %}" class="btn btn-secondary ms-5">Редактирование</a>
+                        </div>
+                        {% if request.user != profile_obj %}
+                        <form method='post' action="{% url 'accounts:profile_sub' profile_obj.pk %}">
+                            {% csrf_token %}
+                            <button class="btn" type="submit" name="profile_id", value="{{profile_obj.pk}}">
+                              {% if profile_obj in request.user.subs.all %}
+                                <i class="bi bi-bookmark-heart-fill text-warning fs-2"></i>
+                              {% else %}
+                                <i class="bi bi-bookmark-heart fs-2"></i>
+                              {% endif %}
+                            </button>
+                          </form>
+                        {% endif %}
+                    </div>
+                    <div class="counts mt-3">
+                        <span>{{profile_obj.usr_posts.all.count}} Публикаций</span>
+                        <span>{{profile_obj.subs.all.count}} Подписки</span>
+                        <span>{{profile_obj.my_subs.all.count}} Подписчики</span>
+                    </div>
+                    <div class="usr_bio mt-3">
+                        <h6>{{profile_obj.first_name}}</h6>
+                        <p>{{profile_obj.info}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="posts d-flex flex-row mt-3">
+                {% for post in profile_obj.usr_posts.all %}
+                <div class="card m-3 justify-content-center" style="width: 18rem;">
+                    <a href="{% url 'accounts:detailed_post' user.pk post.pk %}"><img src="{{post.image.url}}" class="card-img-top" style="width: 100%; object-fit: contain;"></a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+{% endblock %}

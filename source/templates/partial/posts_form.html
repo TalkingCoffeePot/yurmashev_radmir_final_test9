@@ -1,0 +1,36 @@
+
+  <div class="card mt-3 mb-3" style="width: 70%; margin: auto">
+    <div class="card-body row">
+      <div class="col-2">
+        <a href="{% url 'accounts:profile' post.user.pk %}"><img style="border-radius: 50%;" src="{{post.user.avatar.url}}" width="100%" alt=""></a>
+      </div>
+      <div class="col-2">
+        <a href="{% url 'accounts:profile' post.user.pk %}" class="text-dark" style="text-decoration: none;"><h5 class="card-title">{{post.user}}</h5></a>
+      </div>
+    </div>
+    <a href="{% url 'feed_post' post.pk %}" class="card-img-top">
+      <div class="justify-content-center d-flex">
+        <img src="{{post.image.url}}" >
+      </div>
+      
+    </a>
+    <div class="card-body">
+      <p class="card-text">{{post.text}}</p>
+
+      <div class="like_section d-flex flex-row">
+        <div class="col-1">
+            {% csrf_token %}
+            <button id='like' class="btn" type="submit" name="post_id", value="{{post.pk}}">
+              {% if request.user in post.likes.all %}
+                <i class="bi bi-heart-fill text-danger fs-2"></i>
+              {% else %}
+                <i class="bi bi-heart text-danger fs-2"></i>
+              {% endif %}
+            </button>
+        </div>
+        <div class="col-1">
+          <h6 id="like_count" data-artId="{{post.pk}}" class="fs-1">{{post.likes.all.count}} {{post.is_liked}}</h6>
+        </div>
+      </div>
+    
+      
